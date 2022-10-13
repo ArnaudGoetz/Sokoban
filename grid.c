@@ -1,6 +1,16 @@
+/**
+	* \file grid.c
+	*/
+
 #include "grid.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/**
+ * \brief Fonction init_level
+ * \param file_path Chemin du fichier à charger
+ * \return Rien !
+ */
 
 void init_level(const char* file_path){
 	// ouverture du fichier en mode lecture
@@ -11,7 +21,7 @@ void init_level(const char* file_path){
 	}
 	char line[100] = {0};
 	int number_column = 0; // nombre de colonne
-	int number_row = 0; /// nombre de ligne
+	int number_row = 0; // nombre de ligne
 	int number_goals = 0;
 	// on lit la première ligne du fichier
 	fgets(line, 100, file);
