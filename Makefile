@@ -13,13 +13,17 @@ $(EXEC) : $(OBJETS)
 	$(CC) $(CFLAGS) -c $<  
 
 clean :
-    rm -f *.o
+	rm -f *.o
 	rm -f *.out
-	rm -r latex
-	rm -r html
+	rm -rf latex
+	rm -rf html
 
 doc : 
+	rm *.bak
+	doxygen -g
 	doxygen Doxyfile
+
+	
 
 archive :
 	tar -cf TEISSANDIER_Alban__GOETZ_Arnaud.tar.gz *.c *.h Makefile *.txt README.md Doxyfile
