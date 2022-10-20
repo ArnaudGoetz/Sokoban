@@ -17,6 +17,6 @@ struct Grid{
 	int column_number; ///< Nombre de colonne de game_grid
 	int row_number; ///< Nomber de ligne de game_grid
 };
-void init_level(const char* file_path);
+struct Grid* init_level(const char* file_path);
 
 #endif

@@ -3,10 +3,11 @@ CFLAGS = -W -Wall -Wextra
 EXEC = main
 SOURCES = $(wildcard *.c)
 OBJETS = $(SOURCES:.c=.o)
+LDFLAGS = -lm
 
 $(EXEC) : $(OBJETS)
 	@echo "\n==== Linking ===="
-	$(CC) $(CFLAGS) -o $@ $^ -lm
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o : %.c 
 	@echo "\n---- Rule " $@ "----"
@@ -19,7 +20,7 @@ clean :
 	rm -rf html
 
 doc : 
-	rm *.bak
+	rm -f *.bak
 	doxygen -g
 	doxygen Doxyfile
 
