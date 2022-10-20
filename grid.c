@@ -13,12 +13,6 @@
  */
 
 struct Grid* init_level(const char* file_path){
-	struct Grid *niveau = malloc(sizeof (struct Grid));
-	niveau->game_grid = malloc(100 * sizeof (enum CaseType*));
-	for (int i = 0; i<100; i++) {
-		niveau->game_grid[i] = malloc(100 * sizeof (enum CaseType));
-	}
-	
 	// ouverture du fichier en mode lecture
 	FILE* file = fopen(file_path, "r");
 	if(!file){
@@ -32,6 +26,14 @@ struct Grid* init_level(const char* file_path){
 	// on lit la première ligne du fichier
 	fgets(line, 100, file);
 	sscanf(line, "%d %d %d", &number_column, &number_row, &number_goals);
+
+	struct Grid *niveau = malloc(sizeof (struct Grid));
+	niveau->game_grid = malloc(number_row * sizeof (enum CaseType*));
+	for (int i = 0; i<100; i++) {
+		niveau->game_grid[i] = malloc(number_column * sizeof (enum CaseType));
+	}
+	niveau->player = malloc(sizeof (struct Player));
+
 	int current_row = 0;
 	int current_column = 0;
 	int current_goal = 0;
@@ -41,6 +43,10 @@ struct Grid* init_level(const char* file_path){
 		current_column = 0;
 		while(*buffer && *buffer != '\n'){
 			// printf("%c ", line[current_column]);
+			if ((enum CaseType)line[current_column] == '@') {
+				niveau->player->x = current_row;
+				niveau->player->y = current_column;
+			}
 			niveau->game_grid[current_row][current_column] = (enum CaseType)line[current_column];
 			current_column += 1;
 			buffer += 1;
