@@ -29,9 +29,11 @@ int main(void){
 	// display(niveau);
 	
 	bool run = true;
+	char entry;
 	while(run){
 		display(niveau);
-		char entry = input();
+		if (check_finish(niveau)) entry = 'e';
+		else entry = input();
 		switch(entry){
 			case 'e' :{
 				run = false;

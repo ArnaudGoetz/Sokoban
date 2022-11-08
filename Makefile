@@ -6,11 +6,9 @@ OBJETS = $(SOURCES:.c=.o)
 LDFLAGS = -lm
 
 $(EXEC) : $(OBJETS)
-	@echo "\n==== Linking ===="
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o : %.c 
-	@echo "\n---- Rule " $@ "----"
 	$(CC) $(CFLAGS) -c $<  
 
 clean :

@@ -2,10 +2,10 @@
 #define PLAYER_HEADER
 
 enum Direction {
-  Top = 'z',
-  Bottom = 's',
-  Left = 'q',
-  Right = 'd'
+  TOP = 'z',
+  BOTTOM = 's',
+  LEFT = 'q',
+  RIGHT = 'd'
 };
 
 struct Player {
