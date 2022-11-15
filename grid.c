@@ -11,7 +11,6 @@
  * \param file_path Chemin du fichier à charger
  * \return Rien !
  */
-
 struct Grid* init_level(const char* file_path){
 	// ouverture du fichier en mode lecture
 	FILE* file = fopen(file_path, "r");
@@ -62,10 +61,21 @@ struct Grid* init_level(const char* file_path){
 	return niveau;
 }
 
+/**
+ * @brief Fonction testant si le niveau est complété
+ * 
+ * @param niveau 
+ * @return int un booleen indiquant si le niveau est complété
+ */
 int check_finish(struct Grid* niveau) {
 	return (niveau->goal_number == niveau->goals_covered);
 }
 
+/**
+ * @brief Fonction d'affichage du niveau
+ * 
+ * @param niveau 
+ */
 void display(struct Grid* niveau) {
 	for (int i = 0; i < niveau->row_number; i++) {
 		for (int j = 0; j < niveau->column_number; j++) {

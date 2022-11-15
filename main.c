@@ -5,9 +5,14 @@
 
 #include <stdio.h>
 #include "grid.h"
+#include "player.h"
 #include <stdbool.h>
 
-
+/**
+ * @brief Fonction input
+ * 
+ * @return char 
+ */
 char input() {
 	char result = 0;
 	while (result != 'e' && result != 'z' && result != 'q' && result != 's' && result != 'd')
@@ -17,10 +22,9 @@ char input() {
 
 
 /**
- * \brief The main Function
- * \return 0 !
+ * \brief Fonction main
+ * \return 0 ! (normalement)
  */
-
 int main(void){
 	char* chemin = "level1.txt";
 	struct Grid *niveau = init_level(chemin);

@@ -14,15 +14,30 @@ $(EXEC) : $(OBJETS)
 clean :
 	rm -f *.o
 	rm -f *.out
+	
+clean_doc :
 	rm -rf latex
 	rm -rf html
 
+clean_sdl_config :
+	rm -rf install_dir
+
+full_clean :
+	$(MAKE) clean
+	$(MAKE) clean_doc
+	$(MAKE) clean_sdl_config
+
 doc : 
 	rm -f *.bak
-	doxygen -g
 	doxygen Doxyfile
 
-	
+sdl_config :
+	if [ ! -e "install_dir" ]; then \
+		cd SDL2/; \
+		./configure --prefix=$$PWD/../install_dir; \
+		make install -j6; \
+		cd ..; \
+	fi
 
 archive :
 	tar -cf TEISSANDIER_Alban__GOETZ_Arnaud.tar.gz *.c *.h Makefile *.txt README.md Doxyfile

@@ -1,8 +1,6 @@
 #ifndef GRID_HEADER
 #define GRID_HEADER
 
-#include "player.h"
-
 enum CaseType{
 	WALL = '#',
 	BOX = '$',
@@ -26,5 +24,11 @@ struct Grid{
 	int goals_covered;
 };
 struct Grid* init_level(const char* file_path);
+
+int check_finish(struct Grid* niveau);
+
+void display(struct Grid* niveau);
+
+#include "player.h"
 
 #endif

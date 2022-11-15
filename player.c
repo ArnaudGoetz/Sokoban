@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/**
+ * @brief Fonction de déplacement des boîtes
+ * 
+ * @param niveau 
+ * @param x 
+ * @param y 
+ * @param dir 
+ * @return int un booleen indiquant si le déplacement a bien été effectué ou non
+ */
 int move_box(struct Grid* niveau, int x, int y, enum Direction dir) {
   int move_x = dir == TOP ? -1 : (dir == BOTTOM ? 1 : 0);
   int move_y = dir == LEFT ? -1 : (dir == RIGHT ? 1 : 0);
@@ -26,6 +35,12 @@ int move_box(struct Grid* niveau, int x, int y, enum Direction dir) {
   return 0;
 }
 
+/**
+ * @brief Fonction de déplacement du personnage
+ * 
+ * @param niveau 
+ * @param dir 
+ */
 void move_player(struct Grid* niveau, enum Direction dir) {
   int move_x = dir == TOP ? -1 : (dir == BOTTOM ? 1 : 0);
   int move_y = dir == LEFT ? -1 : (dir == RIGHT ? 1 : 0);
