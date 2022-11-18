@@ -7,7 +7,11 @@
 #include "grid.h"
 #include <stdbool.h>
 
-
+/**
+ * @brief Fonction d'input
+ * 
+ * @return char 
+ */
 char input() {
 	char result = 0;
 	while (result != 'e' && result != 'z' && result != 'q' && result != 's' && result != 'd')
@@ -17,8 +21,8 @@ char input() {
 
 
 /**
- * \brief The main Function
- * \return 0 !
+ * \brief La fonction main, initialise le jeu, lit et traite les input du joueur
+ * \return 0
  */
 
 int main(void){

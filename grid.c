@@ -7,11 +7,10 @@
 #include <stdio.h>
 
 /**
- * \brief Fonction init_level
+ * \brief Fonction init_level, charge le fichier file_path dans une structure de type Grid
  * \param file_path Chemin du fichier à charger
- * \return Rien !
+ * \return Un pointeur vers la structure retournée
  */
-
 struct Grid* init_level(const char* file_path){
 	// ouverture du fichier en mode lecture
 	FILE* file = fopen(file_path, "r");
@@ -36,7 +35,7 @@ struct Grid* init_level(const char* file_path){
 
 	int current_row = 0;
 	int current_column = 0;
-	// On lit le fichier ligne par ligne jusqu'à la fin du fichier
+	// On lit le fichier ligne parFonction init_level.  ligne jusqu'à la fin du fichier
 	while(fgets(line, 100, file) != NULL){
 		char* buffer = line;
 		current_column = 0;
@@ -62,10 +61,21 @@ struct Grid* init_level(const char* file_path){
 	return niveau;
 }
 
+/**
+ * @brief Fonction testant si le niveau est complété
+ * 
+ * @param niveau 
+ * @return int un booléen
+ */
 int check_finish(struct Grid* niveau) {
 	return (niveau->goal_number == niveau->goals_covered);
 }
 
+/**
+ * @brief Fonction d'affichage dans le terminal
+ * 
+ * @param niveau 
+ */
 void display(struct Grid* niveau) {
 	for (int i = 0; i < niveau->row_number; i++) {
 		for (int j = 0; j < niveau->column_number; j++) {

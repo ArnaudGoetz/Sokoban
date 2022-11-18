@@ -19,7 +19,6 @@ clean :
 
 doc : 
 	rm -f *.bak
-	doxygen -g
 	doxygen Doxyfile
 
 	
