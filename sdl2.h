@@ -1,5 +1,5 @@
 #pragma once
-#include "install_dir/include/SDL2/SDL.h"
+#include <SDL2/SDL.h>
 typedef struct SDLContext {
   SDL_Window *window;
   SDL_Renderer *renderer;
@@ -22,3 +22,5 @@ void sdl_init();
  * nettoie la variable global context 
  */
 void sdl_quit();
+
+SDLContext context;

@@ -1,9 +1,9 @@
 CC = gcc -g
-CFLAGS = -W -Wall -Wextra
+CFLAGS = -W -Wall -Wextra -I install_dir/include
 EXEC = main
 SOURCES = $(wildcard *.c)
 OBJETS = $(SOURCES:.c=.o)
-LDFLAGS = -lm
+LDFLAGS = -lm -lSDL2 -Linstall_dir/lib
 
 $(EXEC) : $(OBJETS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
