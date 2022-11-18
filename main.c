@@ -3,22 +3,46 @@
 	* \author GOETZ
 	*/
 
-#include <stdio.h>
-#include "grid.h"
-#include "player.h"
-#include <stdbool.h>
-#include "sdl2.h"
+#include "main.h"
+#include <string.h>
 
 /**
  * @brief Fonction input
  * 
  * @return char 
  */
-char input() {
+enum Event event() {
 	char result = 0;
 	while (result != 'e' && result != 'z' && result != 'q' && result != 's' && result != 'd')
 		result = fgetc(stdin);
-	return result;
+	return (enum Event) result;
+}
+
+enum Event event_sdl2() {
+	SDL_Event ev;
+	while (ev.type != SDL_QUIT && ev.type != SDL_KEYUP) {
+		SDL_WaitEvent(&ev);
+	}
+	switch (ev.type){
+		case SDL_QUIT:
+				// on a appuyé sur le bouton "quitter" de la fenêtre
+				return Quit;
+		case SDL_KEYUP:
+				// on a relaché une touche du clavier.
+				switch (ev.key.keysym.sym) {
+					case SDLK_UP:
+						return Up;
+					case SDLK_DOWN:
+						return Down;
+					case SDLK_LEFT:
+						return Left;
+					case SDLK_RIGHT:
+						return Right;
+					default:
+						return Quit;
+				};
+		default: return Quit;
+	}
 }
 
 void display_sdl2(struct Grid* niveau) {
@@ -53,7 +77,7 @@ void display_sdl2(struct Grid* niveau) {
  * \brief Fonction main
  * \return 0 ! (normalement)
  */
-int main(void){
+int main(int argc, char* argv[]){
 	char* chemin = "level1.txt";
 	struct Grid *niveau = init_level(chemin);
 	printf("Nombre de ligne \t: %d\n", niveau->row_number);
@@ -63,18 +87,28 @@ int main(void){
 	
 	bool run = true;
 	char entry;
+	void (*handle_display)(struct Grid*) = &display; 
+	enum Event (*handle_event)() = &event;
+
+	char* char_sdl = "--sdl2";
+	if (argc == 2 && !strcmp(argv[1], char_sdl)) {
+		handle_display = &display_sdl2;
+		handle_event = &event_sdl2;
+	}
+
 	while(run){
-		display_sdl2(niveau);
+		(*handle_display)(niveau);
 		if (check_finish(niveau)) entry = 'e';
-		else entry = input();
+		else entry = (*handle_event)();
 		switch(entry){
 			case 'e' :{
 				run = false;
 				sdl_quit();
 				break;
 			}
-			default: move_player(niveau, ((enum Direction) entry)); break;
+			default: move_player(niveau, ((enum Direction) entry)); printf("%c", entry); break;
 		}
 	}
+	return 0;
 }
 
