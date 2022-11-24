@@ -1,3 +1,7 @@
+/**
+ * @file sdl2.c
+ */
+
 #include "sdl2.h"
 void sdl_init() {
   int const width = 1280;

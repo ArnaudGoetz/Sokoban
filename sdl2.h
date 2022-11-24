@@ -1,3 +1,7 @@
+/**
+ * @file sdl2.h
+ */
+
 #pragma once
 #include <SDL2/SDL.h>
 typedef struct SDLContext {
@@ -6,7 +10,8 @@ typedef struct SDLContext {
   int width;
   int height;
 } SDLContext;
-/* @brief 
+
+/** @brief 
  * Initialise une variable global `context` de type SDLContext
  *
  * Si il y a erreur pendant l'intialisation:

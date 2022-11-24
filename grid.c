@@ -9,7 +9,7 @@
 /**
  * \brief Fonction init_level
  * \param file_path Chemin du fichier à charger
- * \return Rien !
+ * \return struct Grid* Le niveau chargé
  */
 struct Grid* init_level(const char* file_path){
 	// ouverture du fichier en mode lecture

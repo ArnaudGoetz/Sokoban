@@ -1,3 +1,7 @@
+/**
+ * @file player.c 
+ */
+
 #include "player.h"
 #include "grid.h"
 #include <stdlib.h>
