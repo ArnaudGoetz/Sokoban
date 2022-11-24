@@ -58,13 +58,9 @@ enum Event event_sdl2() {
 void display_sdl2(struct Grid* niveau) {
 	SDL_SetRenderDrawColor(context.renderer, 0, 0, 0, 255); // couleur noire
 	SDL_RenderClear(context.renderer); // On dessine toute la fenêtre en noir
-	f * @author your name (you@domain.com)
- * @brief 
- * @version 0.1
- * @date 2022-11-24
- * 
- * @copyright Copyright (c) 2022
- * 		SDL_Rect rect = {    .x = j*(context.width/niveau->column_number),
+	for (int i = 0; i < niveau->row_number; i++) {
+		for (int j = 0; j < niveau->column_number; j++) {
+			SDL_Rect rect = {    .x = j*(context.width/niveau->column_number),
 												.y = i*(context.height/niveau->row_number),
 												.w = (context.width/niveau->column_number),
 												.h = (context.height/niveau->row_number)
@@ -80,7 +76,7 @@ void display_sdl2(struct Grid* niveau) {
 			if (niveau->game_grid[i][j] == NONE) 
 				SDL_SetRenderDrawColor(context.renderer, 0, 0, 0, 255); // on choisit la couleur noire
 			
-			SDL_RenderFillRect printf("%c", entry);(context.renderer, &rect); // On dessine le rectangle
+			SDL_RenderFillRect(context.renderer, &rect); // On dessine le rectangle
 		}
 	}
 	
