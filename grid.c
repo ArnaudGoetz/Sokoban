@@ -26,12 +26,12 @@ struct Grid* init_level(const char* file_path){
 	fgets(line, 100, file);
 	sscanf(line, "%d %d %d", &number_column, &number_row, &number_goals);
 
-	struct Grid *niveau = malloc(sizeof (struct Grid));
-	niveau->game_grid = malloc(number_row * sizeof (enum CaseType*));
-	for (int i = 0; i<100; i++) {
-		niveau->game_grid[i] = malloc(number_column * sizeof (enum CaseType));
+	struct Grid *niveau = ((struct Grid*)malloc(sizeof (struct Grid)));
+	niveau->game_grid = (enum CaseType**)malloc(number_row * sizeof (enum CaseType*));
+	for (int i = 0; i<number_row; i++) {
+		niveau->game_grid[i] = (enum CaseType*)malloc(number_column * sizeof (enum CaseType));
 	}
-	niveau->player = malloc(sizeof (struct Player));
+	niveau->player = (struct Player*)malloc(sizeof (struct Player));
 
 	int current_row = 0;
 	int current_column = 0;
@@ -91,4 +91,18 @@ void display(struct Grid* niveau) {
 		}
 		printf("\n");
 	}
+}
+
+/**
+ * @brief Fonction pour free la mémoire allouée
+ * 
+ * @param niveau 
+ */
+void free_grid(struct Grid* niveau) {
+	free(niveau->player);
+	for (int i = 0; i<niveau->row_number; i++) {
+		free(niveau->game_grid[i]);
+	}
+	free(niveau->game_grid);
+	free(niveau);
 }

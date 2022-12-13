@@ -110,14 +110,15 @@ int main(int argc, char* argv[]){
 		if (check_finish(niveau)) entry = 'e';
 		else entry = (*handle_event)();
 		switch(entry){
-			case 'e' :{
+			case Quit :{
 				run = false;
-				sdl_quit();
+				if (argc == 2 && !strcmp(argv[1], char_sdl)) sdl_quit();
 				break;
 			}
 			default: move_player(niveau, ((enum Direction) entry)); break;
 		}
 	}
+	free_grid(niveau);
 	return 0;
 }
 

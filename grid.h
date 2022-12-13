@@ -33,6 +33,8 @@ int check_finish(struct Grid* niveau);
 
 void display(struct Grid* niveau);
 
+void free_grid(struct Grid* niveau);
+
 #include "player.h"
 
 #endif

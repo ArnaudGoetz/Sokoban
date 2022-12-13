@@ -40,6 +40,6 @@ sdl_config :
 	fi
 
 archive :
-	tar -cf TEISSANDIER_Alban__GOETZ_Arnaud.tar.gz *.c *.h Makefile *.txt README.md Doxyfile
+	tar -cf TEISSANDIER_Alban__GOETZ_Arnaud.tar.gz *.c *.h Makefile *.txt README.md Doxyfile logo.jpg
 	
 
